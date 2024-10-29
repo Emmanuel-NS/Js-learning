@@ -2,11 +2,19 @@
 <html>
 <head>
   <title>Page Title</title>
+  <style>
+    body{
+      background-color: rgb(25, 25, 25);
+      color: white;
+      font-family: Arial;
+    }
+  </style>
 </head>
 <body>
   <button onclick="Game.Rock();">Rock</button>
   <button onclick="Game.Paper();">Paper</button>
   <button onclick="Game.Scissors();">Scissors</button> 
+  <p class="finalResult">Wins: 0, Ties: 0, Loses: 0 </p>
   <button onclick="Game.Reset();">Reset</button>
   <script>
     let Score = JSON.parse(localStorage.getItem('score')) || {
@@ -25,6 +33,7 @@
         Score.ties+=1;
       }
       localStorage.setItem('score',JSON.stringify(Score));
+      document.querySelector('.finalResult').innerHTML=`Wins: ${Score.wins}, Ties: ${Score.ties}, Loses: ${Score.loses}`;
     }
     function ComputerPick(){
       const randomNumber = Math.random();
@@ -44,6 +53,7 @@
         Score.loses=0;
         Score.ties=0;
         localStorage.removeItem('score');
+        document.querySelector('.finalResult').innerHTML=`Wins: ${Score.wins}, Ties: ${Score.ties}, Loses: ${Score.loses}`;
       },
       Rock(){
       let result ='';
@@ -56,9 +66,9 @@
       result = 'you win!';
       }
       Update(result);
-      alert(`you picked rock. computer picked ${Move}. ${result}
+      /*alert(`you picked rock. computer picked ${Move}. ${result}
 Wins: ${Score.wins}, Ties: ${Score.ties}, Loses: ${Score.loses}`);
-    },
+   */ },
     Paper(){
       let result ='';
       let Move = ComputerPick();
@@ -70,9 +80,9 @@ Wins: ${Score.wins}, Ties: ${Score.ties}, Loses: ${Score.loses}`);
       result = 'you lose!';
       }
       Update(result);
-      alert(`you picked paper. computer picked ${Move}. ${result}
+      /*alert(`you picked paper. computer picked ${Move}. ${result}
 Wins: ${Score.wins}, Ties: ${Score.ties}, Loses: ${Score.loses}`);
-    },
+    */},
     Scissors(){
       let result ='';
       let Move = ComputerPick();
@@ -84,9 +94,9 @@ Wins: ${Score.wins}, Ties: ${Score.ties}, Loses: ${Score.loses}`);
       result = 'Tie!';
       }
       Update(result);
-      alert(`you picked Scissors. computer picked ${Move}. ${result}
+      /*alert(`you picked Scissors. computer picked ${Move}. ${result}
 Wins: ${Score.wins}, Ties: ${Score.ties}, Loses: ${Score.loses}`);
-    }
+    */}
     };
     
        
